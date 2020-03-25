@@ -10,7 +10,9 @@ import datetime as dt
 def scrape_all():
     import datetime as dt
     # Initiate headless driver for deployment
-    browser = Browser("chrome", executable_path="chromedriver", headless=True)
+    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    browser = Browser('chrome', **executable_path)
+   # browser = Browser("chrome", executable_path="chromedriver", headless=True)
     news_title, news_paragraph = mars_news(browser)
     # Run all scraping functions and store results in dictionary
     data = {
@@ -23,8 +25,7 @@ def scrape_all():
     return data
 
 # Set the executable path and initialize the chrome browser in splinter
-executable_path = {'executable_path': 'chromedriver.exe'}
-browser = Browser('chrome', **executable_path)
+
 
 
 def mars_news(browser):
@@ -115,4 +116,4 @@ def mars_facts():
 # Tells Flask our script is complete and ready to run/for action
 if __name__ == "__main__":
     # If running as script, print scraped data
-    print(scrape_all())
+    print("scrape")
