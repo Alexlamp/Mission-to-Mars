@@ -117,3 +117,70 @@ def mars_facts():
 if __name__ == "__main__":
     # If running as script, print scraped data
     print("scrape")
+
+def cerberus(browser):
+    
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+    
+    browser.is_element_present_by_text('Cerberus Hemisphere Enhanced', wait_time=1)
+    img_pg1 = browser.links.find_by_partial_text("Cerberus Hemisphere Enhanced")
+    img_pg1.click()
+
+    html = browser.html
+    img_soup = BeautifulSoup(html, 'html.parser')
+
+    
+    cerberus_img_url = img_soup.select_one("div.wide-image-wrapper ul li a").get("href")
+    
+    return cerberus_img_url
+
+def schiaparelli(browser):
+
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+
+    browser.is_element_present_by_text('Schiaparelli Hemisphere Enhanced', wait_time=1)
+    img_pg2 = browser.links.find_by_partial_text("Schiaparelli Hemisphere Enhanced")
+    img_pg2.click()
+
+    # Parse the resulting html with soup
+    html = browser.html
+    img_soup = BeautifulSoup(html, 'html.parser')
+
+    #get image url
+    schiaparelli_img_url = img_soup.select_one("div.wide-image-wrapper ul li a").get("href")
+    
+    return schiaparelli_img_url
+
+def syrtis(browser):
+
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+
+    browser.is_element_present_by_text('Syrtis Major Hemisphere Enhanced', wait_time=1)
+    img_pg3 = browser.links.find_by_partial_text("Syrtis Major Hemisphere Enhanced")
+    img_pg3.click()
+
+    html = browser.html
+    img_soup = BeautifulSoup(html, 'html.parser')
+
+    syrtis_img_url = img_soup.select_one("div.wide-image-wrapper ul li a").get("href")
+    
+    return syrtis_img_url
+
+def valles(browser):
+
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+
+    browser.is_element_present_by_text('Valles Marineris Hemisphere Enhanced', wait_time=1)
+    img_pg4 = browser.links.find_by_partial_text("Valles Marineris Hemisphere Enhanced")
+    img_pg4.click()
+
+    html = browser.html
+    img_soup = BeautifulSoup(html, 'html.parser')
+
+    valles_img_url = img_soup.select_one("div.wide-image-wrapper ul li a").get("href")
+    
+    return valles_img_url
